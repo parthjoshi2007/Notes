@@ -68,6 +68,7 @@ To execute Docker without having to sudo, you need to add your user to the docke
 sudo usermod -aG docker ${USER}
 #+END_SRC
 List the user's groups to verify that the user has now been added to the docker group
+(requires logging out and logging in again or you can use =su - ${USER}=)
 #+BEGIN_SRC shell
 id -nG ${USER}
 #+END_SRC
