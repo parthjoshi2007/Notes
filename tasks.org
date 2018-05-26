@@ -1,0 +1,74 @@
+* CS224n Lectures
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%201/][Lecture 1 - Natural Language Processing with Deep Learning]]
+   CLOSED: [2017-11-09 Thu 13:54]
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%202/][Lecture 2 - Word Vector Representations  word2vec]]
+   CLOSED: [2018-04-11 Wed 16:06]
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%203/][Lecture 3 - GloVe  Global Vectors for Word Representation]]
+   CLOSED: [2018-04-12 Thu 16:06]
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%204/][Lecture 4 - Word Window Classification and Neural Networks]]
+   CLOSED: [2018-04-12 Wed 16:06]
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%205/][Lecture 5 - Backpropagation and Project Advice]]
+   CLOSED: [2018-04-12 Thu 16:06]
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%206/][Lecture 6 - Dependency Parsing]]
+   CLOSED: [2018-04-30 Mon 16:06]
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%207/][Lecture 7 - Introduction to TensorFlow]]
+   CLOSED: [2018-04-30 Mon 16:06]
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%208/][Lecture 8 - Recurrent Neural Networks and Language Models]]
+   CLOSED: [2018-05-11 Fri 14:20]
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%209/][Lecture 9 - Machine Translation and Advanced Recurrent LSTMs and GRUs]]
+   CLOSED: [2018-05-16 Wed 20:46]
+** DONE [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%2010/][Lecture 10 - Neural Machine Translation and Models with Attention]]
+   CLOSED: [2018-05-21 Mon 02:53]
+** TODO [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%2011/][Lecture 11 - Gated Recurrent Units and Further Topics in NMT]]
+** TODO [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%2012/][Lecture 12 - End-to-End Models for Speech Processing]]
+** TODO [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%2013/][Lecture 13 - Convolutional Neural Networks]]
+** TODO [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%2014/][Lecture 14 - Tree Recursive Neural Networks and Constituency Parsing]]
+** TODO [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%2015/][Lecture 15 - Coreference Resolution]]
+** TODO [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%2016/][Lecture 16 - Dynamic Neural Networks for Question Answering]]
+** TODO [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%2017/][Lecture 17 - Issues in NLP and Possible Architectures for NLP]]
+** TODO [[file:~/Courses/CS224n%20-%20NLP%20with%20Deep%20Learning%20(Stanford)/Lecture%2018/][Lecture 18 - Tackling the Limits of Deep Learning for NLP]]
+* TODO Vivin Case Study review
+
+* TODO NER paper
+
+* Research annotation tools
+** Requirements
+   * Input / Output annotations in JSON format
+   * Dynamically add new labels
+** DONE Brat
+   CLOSED: [2018-05-20 Sun 20:41]
+   * FREE
+   * Annotations written to text .ann files. The format is simple enough that a simple script can be used to extract them into any required JSON format.
+   * Unable to handle HTML. Requires .txt files as input
+   * Does not support dynamic creation of new labels. Requires setting up a configuration file containing the details of the kinds of annotations and any validations if required.
+   * Supports text span (entity) annotations, relation annotations, event (n-ary relation) annotations
+   * Allows multi-user setup with logins
+   * Supports some keyoard shortcuts but mainly required extensive mouse usage.
+   * Nice search and annotation editing features
+   * Simple intuitive and nice visualization features
+ 
+** Stanford Manual Annotation Tool
+*** FREE
+*** Really outdated
+*** Not browser based. Runs a JAVA GUI application on the local machine.
+*** Can create labels on the fly and export them as tag files. Tag files are just text files that contain a label and its colour on each line.
+*** No HTML support
+** Tagtog
+   * Paid
+   * Really nice and simple online tool with API access for annotations
+   * HTML processing in beta
+     - Takes in HTML (even directly by specifying the URL)
+     - Converts the HTML into a new HTML text document divided into ~<section>~s and ~<p>~s
+     - This is the text which gets annotated section wise
+     - Seems to work reasonably for a few articles
+*** 
+** GATE
+** Anaphora
+
+* Architecture related
+** TODO User / Entity Design
+** TODO Go through architecture document based on Sat discussion
+
+* TODO Scraping
+** Requirements
+*** HTML, text & image

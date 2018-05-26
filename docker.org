@@ -1,0 +1,111 @@
+* Docker Notes
+
+** Installation
+
+*** Add GPG key
+
+#+BEGIN_SRC shaell
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+#+END_SRC
+
+*** Add Docker repo to APT sources
+
+Create a new file in =/etc/apt/sources.list.d/= called =docker.list=
+#+BEGIN_SRC shell
+sudo tee /etc/apt/sources.list.d/docker.list << EOF
+deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
+# deb-src [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
+EOF
+#+END_SRC
+
+#+NAME: Missing Docker package
+It is possible that the stable docker repo for your new-fangled Ubuntu distro is not available,
+in which case you can add nightly repo as well to stable or use the repo for an older distro
+
+*** Update the package database
+
+#+BEGIN_SRC shell
+sudo apt-get update
+#+END_SRC
+
+*** Verify that you are about to install from the Docker repo instead of the default Ubuntu one
+
+#+BEGIN_SRC shell
+apt-cache policy docker-ce
+#+END_SRC
+
+The output should be similar to the following:
+
+#+BEGIN_EXAMPLE
+docker-ce:
+  Installed: (none)
+  Candidate: 17.03.1~ce-0~ubuntu-xenial
+  Version table:
+     17.03.1~ce-0~ubuntu-xenial 500
+        500 https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+     17.03.0~ce-0~ubuntu-xenial 500
+        500 https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+#+END_EXAMPLE
+
+If you are unable to find the docker-ce package, refer to the comments in [[Missing Docker package]]
+
+*** Install Docker
+
+#+BEGIN_SRC shell
+sudo apt-get install docker-ce
+#+END_SRC
+
+*** Verify Docker installation
+
+#+BEGIN_SRC shell
+sudo service docker status
+#+END_SRC
+
+*** Executing Docker without sudo
+
+To execute Docker without having to sudo, you need to add your user to the docker group
+#+BEGIN_SRC shell
+sudo usermod -aG docker ${USER}
+#+END_SRC
+List the user's groups to verify that the user has now been added to the docker group
+#+BEGIN_SRC shell
+id -nG ${USER}
+#+END_SRC
+
+** Basic Usage
+
+*** Display help and help options
+#+BEGIN_SRC shell
+sudo docker --help
+sudo docker <sub-command> --help
+#+END_SRC
+
+*** View system-wide information about docker
+#+BEGIN_SRC shell
+sudo docker info
+#+END_SRC
+
+*** Search for image on DockerHub
+#+BEGIN_SRC shell
+sudo docker search <image-name>
+#+END_SRC
+
+*** Pull an image from DockerHub
+#+BEGIN_SRC shell
+sudo docker pull <image-name>
+#+END_SRC
+
+*** List all downloaded images
+#+BEGIN_SRC shell
+sudo docker images
+#+END_SRC
+
+*** Run an image in a new container
+#+BEGIN_SRC shell
+sudo docker run <image-name>
+#+END_SRC
+
+*** List running docker containers
+#+BEGIN_SRC shell
+sudo docker ps
+#+END_SRC
