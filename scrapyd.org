@@ -1,0 +1,74 @@
+* Scrapyd Notes
+
+** Installation
+
+*** Install scrapyd (and scrapyd-client)
+
+In order to setup scrapyd as a system service, you might want to install scrapy and scrapyd globally.
+=scrapyd-client= is a CLI client for scrapy that make project deployment etc. easier
+#+BEGIN_SRC shell
+sudo python3 -m pip install scrapyd git+https://github.com/scrapy/scrapyd-client
+#+END_SRC
+
+*** Add =scrapy= user (and group)
+
+The scrapyd daemon process will be run under this user and group.
+#+BEGIN_SRC shell
+sudo adduser --system --group --no-create-home --disabled-password --disabled-login scrapy
+#+END_SRC
+
+*** Create required directories
+
+Create directory for logs. This directory should contain a main log file called =scrapyd.log= along with files
+to capture the stdout and stderr called =scrapyd.out= and =scrapyd.err= respectively. This directory will also
+contain logs for every spider run in the format =/var/log/scrapyd/<PROJECT>/<SPIDER>/<JOB>.log=
+#+BEGIN_SRC shell
+sudo mkdir -p /var/log/scrapyd && sudo chown scrapy:scrapy /var/log/scrapyd
+#+END_SRC
+
+Create data directory (for uploaded eggs, spider queues etc.)
+#+BEGIN_SRC shell
+sudo mkdir -p /var/lib/scrapyd/{eggs,dbs} && sudo chown -R scrapy:scrapy /var/lib/scrapyd
+#+END_SRC
+
+Create configuration directory and save default configuration in =scrapyd.conf=
+#+BEGIN_SRC shell
+sudo mkdir -p /etc/scrapyd
+sudo tee /etc/scrapyd/scrapyd.conf << EOF
+# This configuration file is the sample configuration file obtained from
+# https://scrapyd.readthedocs.io/en/stable/config.html#example-configuration-file
+#
+# All settings commented out are the defaults. To override any setting, uncomment
+# the correspoding line and provide the appropriate value.
+
+[scrapyd]
+eggs_dir    = /var/lib/scrapyd/eggs
+dbs_dir     = /var/lib/scrapyd/dbs
+logs_dir    = /var/log/scrapyd
+# items_dir   =
+# jobs_to_keep = 5
+# max_proc    = 0
+# max_proc_per_cpu = 4
+finished_to_keep = 30
+# poll_interval = 5.0
+# bind_address = 127.0.0.1
+# http_port   = 6800
+# debug       = off
+# runner      = scrapyd.runner
+# application = scrapyd.app.application
+# launcher    = scrapyd.launcher.Launcher
+# webroot     = scrapyd.website.Root
+
+[services]
+# schedule.json     = scrapyd.webservice.Schedule
+# cancel.json       = scrapyd.webservice.Cancel
+# addversion.json   = scrapyd.webservice.AddVersion
+# listprojects.json = scrapyd.webservice.ListProjects
+# listversions.json = scrapyd.webservice.ListVersions
+# listspiders.json  = scrapyd.webservice.ListSpiders
+# delproject.json   = scrapyd.webservice.DeleteProject
+# delversion.json   = scrapyd.webservice.DeleteVersion
+# listjobs.json     = scrapyd.webservice.ListJobs
+# daemonstatus.json = scrapyd.webservice.DaemonStatus
+EOF
+#+END_SRC

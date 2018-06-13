@@ -1,0 +1,36 @@
+* Setup and Installation Notes
+
+** General
+*** To be able to run the command =add-apt-repository=
+#+BEGIN_SRC shell
+sudo apt install software-properties-common
+#+END_SRC
+*** Add a PPA (in Ubuntu)
+#+BEGIN_EXAMPLE
+sudo add-apt-repository ppa:<ppa_name>
+#+END_EXAMPLE
+** Byobu (terminal management)
+*** DigitalOcean tutorial - [[https://www.digitalocean.com/community/tutorials/how-to-install-and-use-byobu-for-terminal-management-on-ubuntu-16-04][How To Install and Use Byobu for Terminal Management on Ubuntu 16.04]]
+    - =CTRL+SHIFT+F2= will create a new session.
+    - =ALT+UP= and =ALT+DOWN= will scroll through your sessions.
+    - =F6= will detach your current Byobu session.
+    - =SHIFT+F6= will detach (but not close) Byobu, and will maintain your SSH connection to the server. You can get back to Byobu with the byobu command.
+    - =ALT+F6= will detach all connections to Byobu except for the current one.
+    - =F2= creates new windows within the current session.
+    - =F3= and =F4= scroll left and right through the windows list.
+    - =CTRL+SHIFT+F3=/=F4= moves a window left and right through the windows list.
+    - =F8= renames the current open window in the list.
+    - =F7= lets you view scrollback history in the current window.
+
+** HAProxy setup
+*** Add the repository =vbernat/haproxy-1.8=
+#+BEGIN_SRC shell
+sudo add-apt-repository ppa:vbernat/haproxy-1.8
+#+END_SRC
+*** Install haproxy
+#+BEGIN_SRC shell
+sudo apt install haproxy
+#+END_SRC
+
+** [[file:docker.org][Docker setup]]
+** [[file:scrapyd.org][Scrapy setup]]
