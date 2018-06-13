@@ -7,7 +7,7 @@
 In order to setup scrapyd as a system service, you might want to install scrapy and scrapyd globally.
 =scrapyd-client= is a CLI client for scrapy that make project deployment etc. easier
 #+BEGIN_SRC shell
-sudo python3 -m pip install scrapyd git+https://github.com/scrapy/scrapyd-client
+sudo -H python3 -m pip install scrapyd git+https://github.com/scrapy/scrapyd-client
 #+END_SRC
 
 *** Add =scrapy= user (and group)
@@ -72,3 +72,13 @@ finished_to_keep = 30
 # daemonstatus.json = scrapyd.webservice.DaemonStatus
 EOF
 #+END_SRC
+
+** Usage
+*** Run the scrapyd server
+You can run =scrapyd= from the command line as follows
+#+BEGIN_SRC shell
+sudo scrapyd -u scrapy -g scrapy --logfile /var/log/scrapyd/scrapyd.log --pidfile /var/run/twistd.pid
+#+END_SRC
+*** TODO Create a =systemd= service for =scrapyd=
+Ideally, we would like to create a system service configuration to launch scrapyd automatically on startup
+and to make the process management easier.
