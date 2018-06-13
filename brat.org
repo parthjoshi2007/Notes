@@ -129,3 +129,10 @@ EOF
 
 sudo service uwsgi-emperor restart
 #+END_SRC
+
+*** [OPTIONAL] Integration with =scrapyd=
+In order for files created by =scrapyd= spiders to be accessible from Brat, the Brat webserver user
+must be added to the =scrapy= group.
+#+BEGIN_SRC shell
+sudo adduser www-data scrapy
+#+END_SRC
