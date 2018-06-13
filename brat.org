@@ -1,0 +1,49 @@
+* Brat Notes
+
+** Installation
+
+*** Download the latest version of Brat from the [[http://brat.nlplab.org][Brat website]]
+#+BEGIN_SRC shell
+VERSION='v1.3_Crunchy_Frog'
+cd ~/Downloads
+curl -O# http://weaver.nlplab.org/~brat/releases/brat-${VERSION}.tar.gz
+#+END_SRC
+
+*** Extract the source code from the tarball
+#+BEGIN_SRC shell
+tar xvzf brat-${VERSION}.tar.gz
+#+END_SRC
+
+*** Place the Brat source code in =/opt=
+#+BEGIN_SRC shell
+sudo mkdir -p /opt/brat
+sudo mv ~/Downloads/brat-${VERSION} /opt/brat/
+#+END_SRC
+
+*** Install brat
+#+BEGIN_SRC shell
+cd /opt/brat/brat-${VERSION}
+./install.sh
+#+END_SRC
+When prompted by the installation script provide the username and password you will use to login to brat.
+You can always change this later (and add more users) by modifying the created config.py file in the brat directory.
+
+*** Fix directory permissions
+
+By default, the Brat installation script looks for an Apache installation on your system and tries to determine
+the group the Apache webserver runs as so that it can make its =data/= and =work/= directories writable by
+that user. For example, if your Apache server runs under user and group =www-data= (the default), the script
+will change the group ownership of =data/= and =work/= to =www-data= and make the directories group-writable.
+
+However, when the script is unable to find the webserver group, it will set the directories to be writable by
+everyone. This must be fixed manually. In particular, if you are using =nginx= as your web server, you will
+need to make the change the group ownership of the two directories to =www-data= and the permissions to allow
+write access for the group.
+
+#+BEGIN_SRC shell
+sudo chown -R :www-data work/ data/
+sudo chmod 775 work/
+find data/ -type d -exec sudo chmod 775 {} +
+find data/ -type f -exec sudo chmod 644 {} +
+find data/ -type f -name '*.ann' -exec sudo chmod 664 {} +
+#+END_SRC
