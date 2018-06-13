@@ -47,3 +47,85 @@ find data/ -type d -exec sudo chmod 775 {} +
 find data/ -type f -exec sudo chmod 644 {} +
 find data/ -type f -name '*.ann' -exec sudo chmod 664 {} +
 #+END_SRC
+
+*** Install Nginx and uWSGI (in emperor mode)
+
+Brat uses CGI scripts for its web application. Since, unlike Apache, Nginx does not natively support
+running CGI scripts, we need uWSGI to be able to server the application. Installing uWSGI in emperor mode
+makes it easy to deploy multiple uWSGI applications (which is a requirement for us). (*NOTE:* The additional
+plugins are required to be able to run other Python applications eg. using Django that we are serving)
+
+#+BEGIN_SRC shell
+sudo apt install nginx uwsgi-emperor uwsgi-plugin-python uwsgi-plugin-python3
+#+END_SRC
+
+*** Nginx configuration
+
+Create the appropriate configuration files for Nginx and reload the server
+
+#+BEGIN_SRC shell
+sudo tee /etc/nginx/sites-available/brat << EOF
+# Brat Rapid Annotation Tool server configuration
+
+upstream brat_annotation_server {
+    server unix:/var/run/brat-wsgi.sock;
+}
+
+server {
+    listen 9999;
+    listen [::]:9999;
+
+    index index.html index.xhtml;
+
+    server_name brat;
+
+    root /opt/brat/brat-v1.3_Crunchy_Frog;
+
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files \$uri \$uri/ =404;
+    }
+
+    location ~ \.cgi$ {
+        include /etc/nginx/uwsgi_params;
+        uwsgi_modifier1 9;
+        uwsgi_pass brat_annotation_server;
+        break;
+    }
+}
+EOF
+sudo ln -s /etc/nginx/sites-available/brat /etc/nginx/sites-enabled/brat
+sudo service nginx restart
+#+END_SRC
+
+*** uWSGI configuration
+
+Create the appropriate configuration files for uWSGI and restart the emperor.
+
+#+BEGIN_SRC shell
+# Run uwsgi-emperor process as root
+sudo sed -i 's/^\([ug]id\)/# \1/' /etc/uwsgi-emperor/emperor.ini
+
+sudo tee /etc/uwsgi-emperor/vassals/brat.ini << EOF
+[uwsgi]
+
+plugins = cgi
+socket = /var/run/brat-wsgi.sock
+cgi = /opt/brat/brat-v1.3_Crunchy_Frog
+# threads = 20
+# async = 200
+# ugreen = true
+
+uid = www-data
+gid = www-data
+chown-socket = %(uid):%(gid)
+chmod-socket = 660
+logto = /var/log/uwsgi/brat.log
+
+# Cleans up when the process is killed (includes deleting the socket file)
+vacuum = true
+EOF
+
+sudo service uwsgi-emperor restart
+#+END_SRC
