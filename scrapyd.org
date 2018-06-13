@@ -73,6 +73,14 @@ finished_to_keep = 30
 EOF
 #+END_SRC
 
+*** [OPTIONAL] Brat-related configuration
+To allow Brat to read and write files created by =scrapy= spiders, especially if you're using the
+BratPipeline to create =.ann= files, you need to add the user running the Brat webserver to the
+scrapy group. Usually, this user will be =www-data=.
+#+BEGIN_SRC shell
+sudo adduser www-data scrapy
+#+END_SRC
+
 ** Usage
 *** Run the scrapyd server
 You can run =scrapyd= from the command line as follows
