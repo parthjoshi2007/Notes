@@ -1,0 +1,34 @@
+* Editor Key Bindings
+
+| Function                        | Spacemacs    | Vim             |
+|---------------------------------+--------------+-----------------|
+| Split window right              | SPC w /      | :vsp(lit) RET   |
+| Split window left               | SPC w -      | :sp(lit) RET    |
+| Navigate between windows        | SPC w [hjkl] | C-w [hjkl]      |
+| Close window                    | SPC w d      | :q RET          |
+| Close all windows               | SPC q q      | :qall RET       |
+| List buffers                    | SPC b b      | :buffers RET    |
+| Next buffer                     | SPC b n      | :bn RET         |
+| Previous buffer                 | SPC b p      | :bp RET         |
+| Switch to scratch buffer        | SPC b s      |                 |
+| Close buffer                    | SPC b d      | :bd RET         |
+| Save buffer                     | SPC f s      | :w RET          |
+| Open file                       | SPC f f      | :e <file> RET   |
+| Open recent file                | SPC f r      |                 |
+| Open configuration              | SPC f e d    |                 |
+| Cycle through themes            | SPC T n      |                 |
+| Set line numbering              | SPC t n      | :set number RET |
+
+* Org Mode
+
+| Function                        | Keybinding |
+|---------------------------------+------------|
+| Cycle document structure levels | S-TAB      |
+| Move document element           | M-[hjkl]   |
+
+* Git integration
+
+| Function   | Keybinding |
+|------------+------------|
+| git status | SPC g s    |
+|          |            |

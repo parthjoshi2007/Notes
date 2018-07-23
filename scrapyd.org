@@ -31,6 +31,14 @@ Create data directory (for uploaded eggs, spider queues etc.)
 sudo mkdir -p /var/lib/scrapyd/{eggs,dbs} && sudo chown -R scrapy:scrapy /var/lib/scrapyd
 #+END_SRC
 
+Create data directory (for processed files like downloaded html pages)
+#+BEGIN_SRC shell
+sudo mkdir -p /var/data/scrapyd/ && sudo chown -R scrapy:scrapy /var/data/scrapyd
+#+END_SRC
+
+Create the directories for project =news=
+sudo mkdir -p /var/data/scrapyd/news/{text,html,screenshots} && sudo chown -R scrapy:scrapy /var/data/scrapyd
+
 Create configuration directory and save default configuration in =scrapyd.conf=
 #+BEGIN_SRC shell
 sudo mkdir -p /etc/scrapyd
@@ -78,6 +86,8 @@ To allow Brat to read and write files created by =scrapy= spiders, especially if
 BratPipeline to create =.ann= files, you need to add the user running the Brat webserver to the
 scrapy group. Usually, this user will be =www-data=.
 #+BEGIN_SRC shell
+PROJECT="news"
+sudo chown g+w /var/data/scrapyd/${PROJECT}/text
 sudo adduser www-data scrapy
 #+END_SRC
 
