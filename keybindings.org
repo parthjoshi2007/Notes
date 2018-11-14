@@ -1,35 +1,66 @@
 * Editor Key Bindings
 
-| Function                      | Spacemacs      | Vim               |
-|-------------------------------+----------------+-------------------|
-| Split window right            | ~SPC w /~      | ~:vsp(lit) RET~   |
-| Split window left             | ~SPC w -~      | ~:sp(lit) RET~    |
-| Navigate between windows      | ~SPC w [hjkl]~ | ~C-w [hjkl]~      |
-| Close window                  | ~SPC w d~      | ~:q RET~          |
-| Close all windows             | ~SPC q q~      | ~:qall RET~       |
-| List buffers                  | ~SPC b b~      | ~:buffers RET~    |
-| Next buffer                   | ~SPC b n~      | ~:bn RET~         |
-| Previous buffer               | ~SPC b p~      | ~:bp RET~         |
-| Switch to scratch buffer      | ~SPC b s~      |                   |
-| Close buffer                  | ~SPC b d~      | ~:bd RET~         |
-| Save buffer                   | ~SPC f s~      | ~:w RET~          |
-| Open file                     | ~SPC f f~      | ~:e <file> RET~   |
-| Open recent file              | ~SPC f r~      |                   |
-| Open configuration            | ~SPC f e d~    |                   |
-| Cycle through themes          | ~SPC T n~      |                   |
-| Set line numbering            | ~SPC t n~      | ~:set number RET~ |
-| Show keybindings (major-mode) | ~SPC ?~        |                   |
-| View help                     | ~SPC h SPC~    | ~:h <topic>~      |
+| Function                                       | Spacemacs             | Vim               |
+|------------------------------------------------+-----------------------+-------------------|
+| Run Elisp function                             | ~SPC SPC~ / ~M-x~     |                   |
+| Split window vertically                        | ~SPC w v~ / ~SPC w /~ | ~C-w v~           |
+| Split window vertically and focus new window   | ~SPC w V~             |                   |
+| Split window horizontally                      | ~SPC w s~ / ~SPC w -~ | ~C-w s~           |
+| Split window horizontally and focus new window | ~SPC w S~             |                   |
+| Navigate to window NUM                         | ~SPC NUM~             |                   |
+| Navigate between windows                       | ~SPC w [hjkl]~        | ~C-w [hjkl]~      |
+| Move windows                                   | ~SPC w [HJKL]~        |                   |
+| Close window                                   | ~SPC w d~             | ~:q RET~          |
+| Close all windows                              | ~SPC q q~             | ~:qall RET~       |
+| List buffers                                   | ~SPC b b~             | ~:buffers RET~    |
+| Next buffer                                    | ~SPC b n~             | ~:bn RET~         |
+| Previous buffer                                | ~SPC b p~             | ~:bp RET~         |
+| Switch to scratch buffer                       | ~SPC b s~             |                   |
+| Close buffer                                   | ~SPC b d~             | ~:bd RET~         |
+| Save buffer                                    | ~SPC f s~             | ~:w RET~          |
+| Open file                                      | ~SPC f f~             | ~:e <file> RET~   |
+| Open recent file                               | ~SPC f r~             |                   |
+| Open configuration                             | ~SPC f e d~           |                   |
+| Cycle through themes                           | ~SPC T n~             |                   |
+| Set line numbering                             | ~SPC t n~             | ~:set number RET~ |
+| Show keybindings (major-mode)                  | ~SPC ?~               |                   |
+| View help                                      | ~SPC h SPC~           | ~:h <topic>~      |
+| Find keybinding for function                   | ~SPC h d b~           |                   |
+| Clear search highlight                         | ~SPC s c~             | ~:hlsearch off~   |
+| Toggle Neotree (file explorer)                 | ~SPC f t~             |                   |
 
 * Org Mode
 
-| Function                        | Keybinding |
-|---------------------------------+------------|
-| Cycle document structure levels | ~S-TAB~    |
-| Move document element           | ~M-[hjkl]~ |
+| Function                                       | Keybinding            |
+|------------------------------------------------+-----------------------|
+| Cycle document structure levels                | ~S-TAB~               |
+| Move document element                          | ~M-[hjkl]~            |
+| Mark item as TODO                              | t                     |
+| Create new TODO at same level as previous item | T                     |
+| Major mode prefix (org mode for .org files     | ~SPC m~ / ~,~         |
+| Schedule agenda item                           | ~, s~                 |
+| Set agenda item deadline                       | ~, d~                 |
+| View sparse tree                               | ~, /~                 |
+| Sort items                                     | ~, ^~                 |
+| Add file to org agenda files                   | ~C-c [~               |
+| Remove file from org agenda files              | ~C-c ]~               |
+| Store link                                     | ~SPC a o l~ / ~C-c l~ |
+| Insert link                                    | ~, i l~               |
+| Insert last stored link                        | ~C-c M-l~             |
+| Org tables prefix                              | ~, t~                 |
+| Insert table row above                         | ~, t i r~             |
+| Insert table column left                       | ~, t i c~             |
+| Delete table row                               | ~, t d r~             |
+| Delete table column                            | ~, t d c~             |
 
 * Git integration
 
 | Function   | Keybinding |
 |------------+------------|
 | git status | ~SPC g s~  |
+
+* References
+- [[https://beppu.github.io/post/spacemacs-tips/][Spacemacs Tips]]
+- [[http://spacemacs.org/layers/+emacs/org/README.html#key-bindings][Spacemacs org layer key-bindings]]
+- [[file:///home/privatecircle/.emacs.d/doc/BEGINNERS_TUTORIAL.org][Spacemacs Beginner's Tutorial]]
+- [[https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html][David O'Toole Org Tutorial]]
