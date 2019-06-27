@@ -73,14 +73,24 @@ List the user's groups to verify that the user has now been added to the docker 
 id -nG ${USER}
 #+END_SRC
 
-*** Install docker-compose
+** Installing docker-compose
 
-=docker-compose= is required to run several cooperating services. You can find the latest version of =docker-compose= [[https://github.com/docker/compose/releases][here]]
+=docker-compose= is required to run several cooperating services. You can find the latest version of =docker-compose= [[https://github.com/docker/compose/releases][here]].
 
 #+BEGIN_SRC shell
 DOCKER_COMPOSE_VER='1.24.1'
 sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VER}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+#+END_SRC
+
+** Installing docker-machine
+
+=docker-machine= is required to manage docker swarm nodes. You can find the latest version of =docker-machine= [[https://github.com/docker/machine/releases/][here]].
+
+#+BEGIN_SRC shell
+DOCKER_MACHINE_VER='0.16.1'
+sudo curl -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VER}/docker-machine-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-machine
+sudo chmod +x /usr/local/bin/docker-machine
 #+END_SRC
 
 ** Basic Usage
