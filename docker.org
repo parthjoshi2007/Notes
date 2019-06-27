@@ -75,7 +75,7 @@ id -nG ${USER}
 
 *** Install docker-compose
 
-=docker-compose= is required to run several cooperating services. You can find the latest version of =docker-compose= [[here][https://github.com/docker/compose/releases]]
+=docker-compose= is required to run several cooperating services. You can find the latest version of =docker-compose= [[https://github.com/docker/compose/releases][here]]
 
 #+BEGIN_SRC shell
 DOCKER_COMPOSE_VER='1.24.1'
