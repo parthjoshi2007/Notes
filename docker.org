@@ -73,6 +73,13 @@ List the user's groups to verify that the user has now been added to the docker 
 id -nG ${USER}
 #+END_SRC
 
+*** Install docker-compose
+
+#+BEGIN_SRC shell
+sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+#+END_SRC
+
 ** Basic Usage
 
 *** Display help and help options
