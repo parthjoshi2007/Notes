@@ -73,7 +73,7 @@ List the user's groups to verify that the user has now been added to the docker 
 id -nG ${USER}
 #+END_SRC
 
-** Installing docker-compose
+** Install =docker-compose=
 
 =docker-compose= is required to run several cooperating services. You can find the latest version of =docker-compose= [[https://github.com/docker/compose/releases][here]].
 
@@ -83,7 +83,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPO
 sudo chmod +x /usr/local/bin/docker-compose
 #+END_SRC
 
-** Installing docker-machine
+** Install =docker-machine=
 
 =docker-machine= is required to manage docker swarm nodes. You can find the latest version of =docker-machine= [[https://github.com/docker/machine/releases/][here]].
 
@@ -92,6 +92,18 @@ DOCKER_MACHINE_VER='0.16.1'
 sudo curl -L https://github.com/docker/machine/releases/download/v${DOCKER_MACHINE_VER}/docker-machine-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-machine
 sudo chmod +x /usr/local/bin/docker-machine
 #+END_SRC
+
+*** Install the Linode driver for =docker-machine=
+
+Required to be able to create and provision Linodes with =docker-machine=. You can find the latest version of the driver [[https://github.com/linode/docker-machine-driver-linode/releases][here]].
+
+#+BEGIN_SRC shell
+sudo apt install unzip
+DOCKER_MACHINE_LINODE_DRIVER_VER='0.1.8'
+curl -L https://github.com/linode/docker-machine-driver-linode/releases/download/v${DOCKER_MACHINE_LINODE_DRIVER_VER}/docker-machine-driver-linode_linux-amd64.zip -o /tmp/docker-machine-driver-linode_linux-amd64.zip
+unzip -d /tmp/docker-machine-driver-linode-linux/ /tmp/docker-machine-driver-linode_linux-amd64.zip 
+sudo cp /tmp/docker-machine-driver-linode-linux/docker-machine-driver-linode /usr/local/bin/docker-machine-driver-linode
+#+END_SRC shell
 
 ** Basic Usage
 
